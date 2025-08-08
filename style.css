@@ -1,58 +1,91 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background: #f9f9f9;
-    color: #333;
-    line-height: 1.6;
+:root{
+  --bg1: #1e1e2f;
+  --bg2: #2e2e3e;
+  --card: rgba(255,255,255,0.06);
+  --muted: #cfcfd6;
+  --glass-border: rgba(255,255,255,0.06);
 }
 
-header {
-    text-align: center;
-    background: #222;
-    color: white;
-    padding: 2rem;
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, "Segoe UI", Roboto, system-ui, -apple-system, Arial, sans-serif;
+  -webkit-font-smoothing:antialiased;
+  background: linear-gradient(135deg, var(--bg1), var(--bg2));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:32px;
+  color:#fff;
 }
 
-header h1 {
-    margin-bottom: 0.3rem;
+.card{
+  width: min(420px, 92vw);
+  background: var(--card);
+  border-radius:14px;
+  padding:28px;
+  text-align:center;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+  backdrop-filter: blur(8px) saturate(120%);
+  border: 1px solid var(--glass-border);
 }
 
-header p {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
+.avatar{
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid rgba(255,255,255,0.12);
+  display:block;
+  margin:0 auto 14px auto;
 }
 
-.links a {
-    color: white;
-    margin: 0 0.5rem;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
+h1{
+  margin:6px 0 0;
+  font-size:1.25rem;
+  letter-spacing:0.2px;
 }
 
-.links a:hover {
-    border-bottom: 1px solid white;
+.tagline{
+  color:var(--muted);
+  margin:6px 0 14px;
+  font-size:0.92rem;
 }
 
-section {
-    max-width: 800px;
-    margin: auto;
-    padding: 1rem;
+.bio{
+  margin:0 auto 18px;
+  font-size:0.98rem;
+  line-height:1.45;
+  color:#e9e9ee;
+  max-width: 36ch;
+  white-space:pre-wrap;
 }
 
-h2 {
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 0.5rem;
-    margin-top: 2rem;
+.links{
+  display:flex;
+  gap:8px;
+  justify-content:center;
+  margin-bottom:16px;
+  flex-wrap:wrap;
 }
 
-ul {
-    padding-left: 20px;
+.links a{
+  text-decoration:none;
+  font-weight:600;
+  padding:8px 12px;
+  border-radius:999px;
+  background: rgba(255,255,255,0.04);
+  color:#fff;
+  border: 1px solid rgba(255,255,255,0.03);
+  transition: transform .15s ease, background .15s ease;
 }
 
-footer {
-    text-align: center;
-    background: #222;
-    color: white;
-    padding: 1rem;
-    margin-top: 2rem;
+.links a:hover{ transform: translateY(-3px); background: rgba(255,255,255,0.07); }
+
+.foot{
+  display:block;
+  color:var(--muted);
+  font-size:0.78rem;
+  margin-top:6px;
 }
