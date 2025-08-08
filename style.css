@@ -10,7 +10,7 @@
 html,body{height:100%}
 body{
   margin:0;
-  font-family: Inter, "Segoe UI", Roboto, system-ui, -apple-system, Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing:antialiased;
   background: linear-gradient(135deg, var(--bg1), var(--bg2));
   display:flex;
@@ -43,20 +43,21 @@ body{
 
 h1{
   margin:6px 0 0;
-  font-size:1.25rem;
-  letter-spacing:0.2px;
+  font-size:1.4rem;
+  letter-spacing:0.3px;
 }
 
 .tagline{
   color:var(--muted);
   margin:6px 0 14px;
-  font-size:0.92rem;
+  font-size:0.95rem;
+  min-height:1.2em;
 }
 
 .bio{
   margin:0 auto 18px;
-  font-size:0.98rem;
-  line-height:1.45;
+  font-size:0.95rem;
+  line-height:1.5;
   color:#e9e9ee;
   max-width: 36ch;
   white-space:pre-wrap;
@@ -81,7 +82,10 @@ h1{
   transition: transform .15s ease, background .15s ease;
 }
 
-.links a:hover{ transform: translateY(-3px); background: rgba(255,255,255,0.07); }
+.links a:hover{
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.07);
+}
 
 .foot{
   display:block;
