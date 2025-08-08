@@ -1,82 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Thrishul — Bio</title>
-  <link rel="stylesheet" href="style.css">
-  <meta name="theme-color" content="#1e1e2f" />
-  <!-- LED style font via Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3shool's Portfolio</title>
+    <link href="https://fonts.cdnfonts.com/css/ds-digital" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(45deg, #1a1a1a, #2d2d2d);
+            color: #4a90e2;
+            font-family: 'DS-Digital', sans-serif;
+            overflow: hidden;
+            text-shadow: 0 0 5px rgba(74, 144, 226, 0.7);
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .profile-section {
+            max-width: 800px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(74, 144, 226, 0.1);
+        }
+
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            margin-bottom: 3rem;
+            border: 3px solid #4a90e2;
+            object-fit: cover;
+            box-shadow: 0 0 20px rgba(74, 144, 226, 0.3);
+        }
+
+        .bio {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            letter-spacing: 2px;
+            margin: 0 auto;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1em;
+            background: #4a90e2;
+            margin-left: 2px;
+            animation: blink 1s infinite;
+            box-shadow: 0 0 10px rgba(74, 144, 226, 0.7);
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            .profile-section {
+                padding: 1.5rem;
+            }
+            .profile-img {
+                width: 200px;
+                height: 200px;
+                margin-bottom: 2rem;
+            }
+            .bio {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="fullscreen">
-    <img
-      class="avatar"
-      src="https://avatars.githubusercontent.com/3shool"
-      alt="Thrishul Sherigar"
-      id="avatar"
-    />
+    <div class="container">
+        <div class="profile-section">
+            <img src="https://avatars.githubusercontent.com/3shool" alt="Profile Picture" class="profile-img">
+            <div class="bio" id="bio"></div>
+        </div>
+    </div>
 
-    <h1>Thrishul Sherigar</h1>
-    <p class="tagline">
-      <span id="typewriter"></span>
-    </p>
+    <script>
+        // Typewriter Effect
+        const bioText = "Digital consciousness explorer debugging the matrix of reality. Currently running simulations at the intersection of synapses and silicon, while market forces dance with dialectical materialism in my neural network. Root access to genomic evolution, patch notes pending. Status: questioning existence.exe, optimizing human potential, and bootstrapping tomorrow's paradigms. No gods, only code.";
+        const bioElement = document.getElementById('bio');
+        let index = 0;
 
-    <p class="bio">
-      "Just a guy in Bengaluru who talks to computers until they behave.
-      Collector of books, trekking blisters, philosophical rabbit holes, and the
-      occasional sports injury. Fueled by coffee, curiosity, and a questionable
-      number of half-finished side projects. This little blog-site is still
-      under construction — kind of like my cooking skills."
-    </p>
-
-    <nav class="links">
-      <a href="mailto:tsherigar@gmail.com">Email</a>
-      <a href="https://github.com/3shool" target="_blank" rel="noreferrer">GitHub</a>
-      <a href="https://twitter.com/3shooool" target="_blank" rel="noreferrer">Twitter</a>
-    </nav>
-
-    <small class="foot">© 2025 Thrishul — built with ☕ & curiosity</small>
-  </div>
-
-  <script>
-    const words = [
-      "Software dev · Bengaluru",
-      "Coffee-powered coder",
-      "Maker of questionable side projects"
-    ];
-    let i = 0;
-    let j = 0;
-    let currentWord = '';
-    let isDeleting = false;
-    const speed = 100;
-    const pause = 1500;
-
-    function type() {
-      currentWord = words[i];
-      const typewriter = document.getElementById('typewriter');
-
-      if (isDeleting) {
-        typewriter.textContent = currentWord.substring(0, j - 1);
-        j--;
-        if (j === 0) {
-          isDeleting = false;
-          i = (i + 1) % words.length;
+        function typeWriter() {
+            if (index < bioText.length) {
+                if (bioElement.innerHTML.length === 0) {
+                    bioElement.innerHTML = bioText.charAt(index) + '<span class="cursor"></span>';
+                } else {
+                    bioElement.innerHTML = bioText.substring(0, index + 1) + '<span class="cursor"></span>';
+                }
+                index++;
+                const randomDelay = Math.random() * (100 - 50) + 50; // Random delay between 50-100ms
+                setTimeout(typeWriter, randomDelay);
+            }
         }
-      } else {
-        typewriter.textContent = currentWord.substring(0, j + 1);
-        j++;
-        if (j === currentWord.length) {
-          isDeleting = true;
-          setTimeout(type, pause);
-          return;
-        }
-      }
-      setTimeout(type, isDeleting ? speed / 2 : speed);
-    }
 
-    document.addEventListener('DOMContentLoaded', type);
-  </script>
+        // Start typewriter effect when page loads
+        window.onload = typeWriter;
+    </script>
 </body>
 </html>
