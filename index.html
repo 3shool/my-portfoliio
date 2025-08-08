@@ -6,6 +6,7 @@
   <title>Thrishul — Bio</title>
   <link rel="stylesheet" href="style.css">
   <meta name="theme-color" content="#1e1e2f" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <main class="card">
@@ -17,7 +18,9 @@
     />
 
     <h1>Thrishul Sherigar</h1>
-    <p class="tagline">Software dev · Bengaluru</p>
+    <p class="tagline">
+      <span id="typewriter"></span>
+    </p>
 
     <p class="bio">
       "Just a guy in Bengaluru who talks to computers until they behave.
@@ -35,5 +38,44 @@
 
     <small class="foot">© 2025 Thrishul — built with ☕ & curiosity</small>
   </main>
+
+  <script>
+    const words = [
+      "Software dev · Bengaluru",
+      "Coffee-powered coder",
+      "Maker of questionable side projects"
+    ];
+    let i = 0;
+    let j = 0;
+    let currentWord = '';
+    let isDeleting = false;
+    const speed = 100;
+    const pause = 1500;
+
+    function type() {
+      currentWord = words[i];
+      const typewriter = document.getElementById('typewriter');
+
+      if (isDeleting) {
+        typewriter.textContent = currentWord.substring(0, j - 1);
+        j--;
+        if (j === 0) {
+          isDeleting = false;
+          i = (i + 1) % words.length;
+        }
+      } else {
+        typewriter.textContent = currentWord.substring(0, j + 1);
+        j++;
+        if (j === currentWord.length) {
+          isDeleting = true;
+          setTimeout(type, pause);
+          return;
+        }
+      }
+      setTimeout(type, isDeleting ? speed / 2 : speed);
+    }
+
+    document.addEventListener('DOMContentLoaded', type);
+  </script>
 </body>
 </html>
